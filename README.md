@@ -16,4 +16,4 @@ Un feuille de style CSS peut-être passer en paramètre GET : ?css=URL_ABSOLUTE
 Exemple : https://miw.websenso.dev/ClassroomGarden/?css=https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css    
     
 ## Crédits
-Ce projet d'intégration CSS est inspiré de <a href="http://www.csszengarden.com/" rel="noopener noreferrer" target="_blank">www.CssZenGarden.com</a>.</p>
+Ce projet d'intégration CSS est inspiré de www.CssZenGarden.com . 
