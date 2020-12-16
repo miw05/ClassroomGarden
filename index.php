@@ -27,9 +27,6 @@ krsort($studentsPerPromo);  // By deskCoordinate
 shuffle($teachers); // By random
 
 
-// print "<pre>";
-// print_r($organization);
-// print "</pre>";
 
 ?><!DOCTYPE html>
 <html lang="fr">
@@ -83,107 +80,107 @@ shuffle($teachers); // By random
 
 <body>
 <div class="page-wrapper">
-    
+
     <section class="intro">
         <header role="banner">
             <h1><?= $organization->legalName ?></h1>
         </header>
     </section>
-    
+
     <div class="tools">
         <ul>
             <li><a class="button" href="javascript:window.print();" title="Imprimer sur 1 feuille A4">Imprimer pour émargement</a></li>
         </ul>
     </div>
-    
+
     <div class="students" role="main">
-    
-    <?php foreach ($studentsPerPromo as $promo => $students) { ?>
-        <section class="classroom promo-<?= $promo ?>">
-    
-            <h2>Promotion <?= $promo ?></h2>
+
+      <?php foreach ($studentsPerPromo as $promo => $students) { ?>
+          <section class="classroom promo-<?= $promo ?>">
+
+              <h2>Promotion <?= $promo ?></h2>
               <ul>
                 <?php
-                
+
                 // Sort Student by deskCoordinate
                 usort($students, function ($a, $b) {
                   return strcmp($a->deskCoordinate, $b->deskCoordinate);
                 });
-                
-                 foreach ($students as $student) { ?>
-    
+
+                foreach ($students as $student) { ?>
+
                     <li data-deskCoordinate="<?= $student->deskCoordinate ?>">
-    
-                        <img src="<?= ($student->github) ? 'https://images.weserv.nl/?w=100&h=100&&output=webp&fit=cover&url=' . rtrim($student->github, '/') . '.png' : 'https://via.placeholder.com/100x100' ?>" width="100" heigh="100" loading="lazy" alt="<?= $student->name ?>">
+
+                        <img src="<?= ($student->github) ? 'https://images.weserv.nl/?w=100&h=100&&output=webp&fit=cover&url=' . rtrim($student->github, '/') . '.png' : 'https://via.placeholder.com/100x100' ?>" width="100" height="100" loading="lazy" alt="<?= $student->name ?>">
                         <h4 class="name"><?= $student->name ?></h4>
                         <ul class="networks_links">
-                            <?php if($student->linkedin) { ?><li><a class="linkedin" href="<?= $student->linkedin ?>" rel="noopener noreferrer" target="_blank">LinkedIn</a></li><?php } ?>
-                            
-                            <?php if($student->github) { ?><li><a class="github" href="<?= $student->github ?>" rel="noopener noreferrer" target="_blank">GitHub</a></li><?php } ?>
-                            
+                          <?php if($student->linkedin) { ?><li><a class="linkedin" href="<?= $student->linkedin ?>" rel="noopener noreferrer" target="_blank">LinkedIn</a></li><?php } ?>
+
+                          <?php if($student->github) { ?><li><a class="github" href="<?= $student->github ?>" rel="noopener noreferrer" target="_blank">GitHub</a></li><?php } ?>
+
                         </ul>
-                        
+
                     </li>
-    
+
                 <?php } ?>
               </ul>
-    
-    
-    
-        </section>
-              <?php } ?>
-    
-    
+
+
+
+          </section>
+      <?php } ?>
+
+
     </div>
-    
+
     <aside class="sidebar" role="complementary">
         <div class="wrapper">
-    
-    
+
+
             <section class="teachers">
-            
+
                 <h2>Enseignant·e·s</h2>
-                
+
                 <ul>
-                
-                    <?php foreach ($teachers as $teacher) { ?>
-                    
-                    <li>
-                    
-                        <img src="<?= ($teacher->github) ? 'https://images.weserv.nl/?w=100&h=100&&output=webp&fit=cover&url=' . rtrim($teacher->github, '/') . '.png' : 'https://via.placeholder.com/100x100' ?>"  width="100" heigh="100" loading="lazy" alt="<?= $teacher->name ?>">
-                        <h4 class="name"><?= $teacher->name ?></h4>
-                        
-                        <ul class="networks_links">
+
+                  <?php foreach ($teachers as $teacher) { ?>
+
+                      <li>
+
+                          <img src="<?= ($teacher->github) ? 'https://images.weserv.nl/?w=100&h=100&&output=webp&fit=cover&url=' . rtrim($teacher->github, '/') . '.png' : 'https://via.placeholder.com/100x100' ?>"  width="100" height="100" loading="lazy" alt="<?= $teacher->name ?>">
+                          <h4 class="name"><?= $teacher->name ?></h4>
+
+                          <ul class="networks_links">
                             <?php if($teacher->linkedin) { ?><li><a class="linkedin" href="<?= $teacher->linkedin ?>" rel="noopener noreferrer" target="_blank">LinkedIn</a></li><?php } ?>
                             <?php if($teacher->github) { ?><li><a class="github" href="<?= $teacher->github ?>" rel="noopener noreferrer" target="_blank">GitHub</a></li><?php } ?>
-                        </ul>
-                        
-                        <ul class="teaching">
-                        <?php 
-                        $teachings = explode(";", $teacher->teaching);
-                        foreach($teachings as $teaching) {   ?>
-                            <li class="<?= trim(strtolower($teaching)) ?>"><?= $teaching ?></li>
-                        <?php } ?>
-                        </ul>
-            
-                    </li>
-                
-                <?php } ?>
+                          </ul>
+
+                          <ul class="teaching">
+                            <?php
+                            $teachings = explode(";", $teacher->teaching);
+                            foreach($teachings as $teaching) {   ?>
+                                <li class="<?= trim(strtolower($teaching)) ?>"><?= $teaching ?></li>
+                            <?php } ?>
+                          </ul>
+
+                      </li>
+
+                  <?php } ?>
                 </ul>
-            
-            
+
+
             </section>
         </div>
     </aside>
-    
+
     <footer class="footer">
         <div class="outro">
-            <p>Cette feuille est générée depuis l'<a href="https://github.com/miw05/directory" rel="noopener noreferrer" target="_blank">annuaire de la MIW</a> et basé sur le <a href="https://github.com/miw05/ClassroomGarden" rel="noopener noreferrer" target="_blank">layout ClassroomGarden</a>. Et ce projet est inspiré de <a href="http://www.csszengarden.com/" rel="noopener noreferrer" target="_blank">www.CssZenGarden.com</a>.</p>     
-        
+            <p>Cette feuille est générée depuis l'<a href="https://github.com/miw05/directory" rel="noopener noreferrer" target="_blank">annuaire de la MIW</a> et basé sur le <a href="https://github.com/miw05/ClassroomGarden" rel="noopener noreferrer" target="_blank">layout ClassroomGarden</a>. Et ce projet est inspiré de <a href="http://www.csszengarden.com/" rel="noopener noreferrer" target="_blank">www.CssZenGarden.com</a>.</p>
+
             <p><?= $organization->description ?></p>
             <p>Elle a été fondée en <?= date('Y', strtotime($organization->foundingDate)) ?>.</p>
         </div>
-        
+
         <div class="miw_contact" >
             <h4>Coordonnées</h4>
             <ul>
@@ -195,7 +192,7 @@ shuffle($teachers); // By random
                 <li><span class="label">GitHub :</span> <a href="<?= $organization->github ?>" target="_blank" rel="noopener noreferrer"><?= $organization->github ?></a></li>
             </ul>
         </div>
-    
+
     </footer>
 
 </div>
