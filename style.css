@@ -1,0 +1,65 @@
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: linear-gradient(to right, #ffffff 0%,#ffffff 66%,#e5ede8 66%,#e5ede8 100%);
+    font-size: 100%;
+    color: #325050;
+    background: #fff;
+    font-family: 'Libre Baskerville', sans-serif;
+}
+
+
+
+
+
+/* Layout */
+
+.students {
+    width: 66%;
+    float: left;
+}
+.sidebar {
+    float: left;
+    width: 33%;
+}
+footer.footer {
+    clear: both;
+}
+.page-wrapper {
+    margin: 1em;
+}
+
+.classroom > ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+.classroom > ul > li {
+    width: 25%; 
+}
+
+
+
+/* Commons */ 
+
+
+.classroom ul {
+    padding: 0;
+}
+.classroom ul li {
+    list-style: none;
+}
+
+
+
+.classroom img,
+.teachers img  {
+    width: 50px;
+    height: auto;
+} 
+
+.classroom:not(:first-child) {
+    display:none;
+}
